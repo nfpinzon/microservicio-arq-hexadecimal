@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  # Database - Mongo DB
+  mongo:
+    image: mongo
+    container_name: npinzon-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
