@@ -1,5 +1,7 @@
 package com.npinzon.microservice.msproducto.application;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,9 @@ public class ProductoServiceSecondaryImp implements ProductoService{
     @CircuitBreaker(name = "productoServiceSecondary")
     @Override
     public Mono<Producto> save(Producto producto) {
+        if(producto.getCreateAt() == null){
+            producto.setCreateAt(new Date());
+        }
         return dao.save(producto);
     }
 

@@ -1,0 +1,24 @@
+package myAppRules;
+
+import com.npinzon.springboot.webflux.springbootwebflux.bean.*;
+import java.util.Date
+import com.npinzon.microservice.msproducto.domain.models.documents.Repositorio;
+
+dialect  "mvel"
+
+rule "Connect Repo A"
+    when
+     $p : Repositorio(nombre ==  "REPOA" )
+    then
+        $p.setConexion("Main")
+        System.out.println("CAMBIO CONEXION REPOSITORIO [" + $p.getNombre() + "]");
+        
+end
+rule "Connect Repo B"
+    when
+     $p : Repositorio(nombre == "REPOB" )
+    then
+        $p.setConexion("Secondary")
+        System.out.println("CAMBIO CONEXION REPOSITORIO [" + $p.getNombre() + "]");
+        
+end
